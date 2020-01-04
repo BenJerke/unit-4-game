@@ -47,15 +47,24 @@ c4val = Math.floor((Math.random() * 12 ) + 1);
     console.log(c2val);
     console.log(c3val);
     console.log(c4val);
+    
+$("c1").click(playerScore + c1val);
+$("c2").click(playerScore + c2val);
+$("c3").click(playerScore + c3val);
+$("c4").click(playerScore + c4val);
+
 
 //each time a crystal is clicked, check playerScore against targetNumber
 };
 
 
+
+
 //function for checking score against number
 
-function checkGuess (playerScore, targetNumber, inPlay) {
+function checkGuess () {
 
+    
     if (inPlay == true && playerScore < targetNumber) {
         console.log(playerScore);
         return inPlay;
@@ -64,6 +73,7 @@ function checkGuess (playerScore, targetNumber, inPlay) {
     else if (inPlay == true && playerScore > targetNumber){
         losses ++;
         console.log(losses);
+        $("losses").html("losses: " + losses)
         inPlay = false;
         return inPlay;
 
@@ -72,23 +82,31 @@ function checkGuess (playerScore, targetNumber, inPlay) {
     else if (inPlay == true && playerScore == targetNumber) {
         wins++;
         console.log(wins);
+        $("wins").html( "wins: " + wins)
         inPlay = false;
         return inPlay
     }
 
+ 
 };
 
 
 
+
+
 //actually do the code
+
+
 $("newgame").click(runGame());
+
+if (inPlay) {
+
 $(".crystal").click(checkGuess());
 
+}
 
-$("c1").click(playerScore + c1val);
-$("c2").click(playerScore + c2val);
-$("c3").click(playerScore + c3val);
-$("c4").click(playerScore + c4val);
+
+
 
 
 

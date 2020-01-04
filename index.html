@@ -2,15 +2,17 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Crystals Collector</title>
+    <title>Crystal Collector</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
+
 <!-- game title -->
 <h1> Crystal Collector </h1>
 <!-- game instructions -->
 <p> There are four crystals. Each crystal has a hidden value. Clicking the crystal will add that value to your score. If you can get your score to equal the target number, you win. Good luck! </p>
-<!-- target number -->
+
 
 <!-- crystals 1 through 4-->
 <button class="crystal" id="c1">C1</button>
@@ -18,11 +20,19 @@
 <button class="crystal" id="c3">C3</button>
 <button class="crystal" id="c4">C4</button>
 
+<!-- target number -->
+<div id="targetnumber"></div>
+
 <!-- player score -->
+<div id= "playerscore"></div>
+
+
 
 <!-- wins & losses -->
-  
+<div id= "wins"> </div>
 
-<script src="assets/javascript/game.js"></script>
+<div id= "losses"> </div>
+
+<script src="assets/javascript/game2.js"></script>
   </body>
 </html>
