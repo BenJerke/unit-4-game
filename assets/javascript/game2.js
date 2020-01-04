@@ -1,4 +1,5 @@
-
+var wins = 0; 
+var losses = 0;
 
 function initializeCrystal () {
     
@@ -43,32 +44,38 @@ function onClick (arrCrystal, targetScore, playerScore) {
 
     //assign event handlers to crystal HTML elements that increment the player score by the crystal's hidden value each time the crystal is clicked
   
-    $(".crystal").on( "click", function () {
-        if ($(".crystal").attr("#id") == "#c1") {
+    $("#c1").on( "click", function () {
             playerScore += arrCrystal[0]
+            $("#playerscore").html("Score: " + playerScore)
             console.log(playerScore);
             return playerScore
-        }
+        });
 
-        else if ($(".crystal").attr("#id") == "#c2") {
+    $("#c2").on("click", function () {
             playerScore += arrCrystal[1]
-            console.log(playerScore);
+            $("#playerscore").html("Score: " + playerScore)
+            console.log(playerScore);   
             return playerScore
-        }
-        else if ($(".crystal").attr("#id") == "#c3") {
+        });
+
+    $("#c3").on("click", function () {
             playerScore += arrCrystal[2]
+            $("#playerscore").html("Score: " + playerScore)
             console.log(playerScore);
             return playerScore
             
-        }
-        else if ($(".crystal").attr("#id") == "#c4") {
+        });
+
+    $("#c4").on("click", function () {
             playerScore += arrCrystal[3]
+            $("#playerscore").html("Score: " + playerScore)
             console.log(playerScore);
             return playerScore
-        }
+        });
 
-    });
-    
+
+
+
     console.log($(".crystal"))
     console.log(playerScore)
 
@@ -77,12 +84,13 @@ function onClick (arrCrystal, targetScore, playerScore) {
     
         if (playerScore > targetScore) {
             losses++;
-           
+            $("#losses").html("Losses: " + losses)
             return gameOver = true;
         }
 
         else if (playerScore === targetScore) {
             wins++;
+            $("#wins").html("Wins: " + wins)
             return gameOver = true
 
         }
@@ -96,6 +104,10 @@ function onClick (arrCrystal, targetScore, playerScore) {
         
     }
     while (gameOver == false);
+
+
+    console.log (wins)
+    console.log (losses)
  
    
 
