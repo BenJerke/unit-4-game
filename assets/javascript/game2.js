@@ -10,6 +10,11 @@ function initializeCrystal () {
 
 
 function onLoad () {
+    console.log ("onload hit")
+    
+    //get rid of event listeners, in case we're reloading
+    
+    
     //intialize yer dang variables
     var gameOver = false
 
@@ -36,12 +41,8 @@ function onLoad () {
  
 
     
-
- //onClick(arrCrystal, targetScore, playerScore);
-
-
 function onClick (arrCrystal, targetScore, playerScore, gameOver) {
-
+    $(".crystal").off()
 
     console.log (arrCrystal);
     console.log (playerScore);
@@ -50,37 +51,53 @@ function onClick (arrCrystal, targetScore, playerScore, gameOver) {
 
     //assign event handlers to crystal HTML elements that increment the player score by the crystal's hidden value each time the crystal is clicked
   
-    $("#c1").on( "click", function () {
+    $("#c1").click( function c1click () {
             //increment score
             playerScore += arrCrystal[0];
-            $("#playerscore").html("Score: " + playerScore)
+            $("#playerscore").html("Score: " + playerScore);
+            console.log (arrCrystal);
+            console.log (playerScore);
+            console.log (targetScore);
             //check score
             reLoad(scoreCheck(playerScore, targetScore, gameOver));
-        });
-
-    $("#c2").on("click", function () {
-            //increment score
-            playerScore += arrCrystal[1];
-            $("#playerscore").html("Score: " + playerScore)
-            //check score
-            reLoad(scoreCheck(playerScore, targetScore, gameOver));
-
-
-        });
-
-    $("#c3").on("click", function () {
-            playerScore += arrCrystal[2];
-            $("#playerscore").html("Score: " + playerScore)
-            console.log(playerScore);
-            reLoad(scoreCheck(playerScore, targetScore, gameOver));
+            //check if we need to start over
             
         });
 
-    $("#c4").on("click", function () {
+    $("#c2").click( function c2click () {
+
+            playerScore += arrCrystal[1];
+            $("#playerscore").html("Score: " + playerScore)
+            console.log (arrCrystal);
+            console.log (playerScore);
+            console.log (targetScore);
+            reLoad(scoreCheck(playerScore, targetScore, gameOver));
+            
+
+
+        });
+
+    $("#c3").click( function c3click () {
+            playerScore += arrCrystal[2];
+            $("#playerscore").html("Score: " + playerScore)
+            console.log (arrCrystal);
+            console.log (playerScore);
+            console.log (targetScore);
+            
+            reLoad(scoreCheck(playerScore, targetScore, gameOver));
+            
+            
+        });
+
+    $("#c4").click( function c4click () {
             playerScore += arrCrystal[3];
             $("#playerscore").html("Score: " + playerScore)
-            console.log(playerScore);
+            console.log (arrCrystal);
+            console.log (playerScore);
+            console.log (targetScore);
+
             reLoad(scoreCheck(playerScore, targetScore, gameOver));
+            
             
         });    
 
@@ -99,8 +116,8 @@ function onClick (arrCrystal, targetScore, playerScore, gameOver) {
 //main gameplay loop
     
 function gamePlay(arrCrystal, targetScore, playerScore, gameOver)  {
-    //call the onclick function, which returns player score
 
+    //call the onclick function, which returns player score
     onClick(arrCrystal, targetScore, playerScore, gameOver);
 
 
@@ -126,6 +143,10 @@ function reLoad(gameOver) {
 
 
 function scoreCheck (playerScore, targetScore){
+
+    console.log(playerScore)
+    console.log(targetScore)
+
     if (playerScore > targetScore) {
         losses++;
         $("#losses").html("Losses: " + losses)
@@ -147,8 +168,7 @@ function scoreCheck (playerScore, targetScore){
     
     else if (playerScore < targetScore) {
         console.log("still playing");
-        gameOver = false;
-        
+        return gameOver = false;
     }
 }
 
