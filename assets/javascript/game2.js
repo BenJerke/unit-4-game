@@ -10,6 +10,7 @@ function initializeCrystal () {
 
 
 function onLoad () {
+    //intialize yer dang variables
     var gameOver = false
 
     //make crystal array 
@@ -50,57 +51,40 @@ function onClick (arrCrystal, targetScore, playerScore, gameOver) {
     //assign event handlers to crystal HTML elements that increment the player score by the crystal's hidden value each time the crystal is clicked
   
     $("#c1").on( "click", function () {
+            //increment score
             playerScore += arrCrystal[0];
             $("#playerscore").html("Score: " + playerScore)
-            console.log(playerScore);
+            //check score
+            reLoad(scoreCheck(playerScore, targetScore, gameOver));
         });
 
     $("#c2").on("click", function () {
+            //increment score
             playerScore += arrCrystal[1];
             $("#playerscore").html("Score: " + playerScore)
-            console.log(playerScore);   
+            //check score
+            reLoad(scoreCheck(playerScore, targetScore, gameOver));
+
+
         });
 
     $("#c3").on("click", function () {
             playerScore += arrCrystal[2];
             $("#playerscore").html("Score: " + playerScore)
             console.log(playerScore);
-
+            reLoad(scoreCheck(playerScore, targetScore, gameOver));
+            
         });
 
     $("#c4").on("click", function () {
             playerScore += arrCrystal[3];
             $("#playerscore").html("Score: " + playerScore)
             console.log(playerScore);
+            reLoad(scoreCheck(playerScore, targetScore, gameOver));
+            
+        });    
 
-        });
 
-    console.log(playerScore)
-    $(".crystal").on("click", function () {
-        if (playerScore > targetScore) {
-            losses++;
-            $("#losses").html("Losses: " + losses)
-            console.log("we lost")
-            console.log(losses)
-            return gameOver = true;
-        }
-        
-        else if (playerScore == targetScore) {
-            wins++;
-            $("#wins").html("Wins: " + wins);
-            console.log("we won");
-            console.log(wins);
-            return gameOver = true;
-        
-        }
-        
-        else if (playerScore < targetScore) {
-            console.log("looped");
-            return gameOver == false;
-        }
-        
-        
-        });
 
     }
 
@@ -117,8 +101,7 @@ function onClick (arrCrystal, targetScore, playerScore, gameOver) {
 function gamePlay(arrCrystal, targetScore, playerScore, gameOver)  {
     //call the onclick function, which returns player score
 
-
-   $(".crystal").on("click", onClick(arrCrystal, targetScore, playerScore, gameOver));
+    onClick(arrCrystal, targetScore, playerScore, gameOver);
 
 
 }
@@ -130,11 +113,47 @@ function gamePlay(arrCrystal, targetScore, playerScore, gameOver)  {
 function reLoad(gameOver) {
     //if the game ends, start a new one
     if (gameOver == true){
+        console.log("reload hit");
         onLoad();
+    }
+
+    else {
+        return gameOver = false
+    }
+}
+
+
+
+
+function scoreCheck (playerScore, targetScore){
+    if (playerScore > targetScore) {
+        losses++;
+        $("#losses").html("Losses: " + losses)
+        console.log("we lost")
+        console.log(losses)
+        return gameOver = true;
+       
+    }
+    
+    else if (playerScore == targetScore) {
+        wins++;
+        $("#wins").html("Wins: " + wins);
+        console.log("we won");
+        console.log(wins);
+        return gameOver = true;
+        
+    
+    }
+    
+    else if (playerScore < targetScore) {
+        console.log("still playing");
+        gameOver = false;
+        
     }
 }
 
 
 
 //initial load call
-onLoad(reLoad());
+onLoad();
+
