@@ -12,7 +12,7 @@ function initializeCrystal () {
 function onLoad () {
     console.log ("onload hit")
     
-    //get rid of event listeners, in case we're reloading
+
     
     
     //intialize yer dang variables
@@ -42,6 +42,8 @@ function onLoad () {
 
     
 function onClick (arrCrystal, targetScore, playerScore, gameOver) {
+    
+    //get rid of event listeners, in case we're reloading (took me way too long to figure this out)
     $(".crystal").off()
 
     console.log (arrCrystal);
